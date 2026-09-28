@@ -45,13 +45,36 @@
   .find { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px; border-radius: 10px; background: var(--panel2); font-size: 13.5px; color: var(--text); }
   .find i { font-size: 16px; color: var(--dim); }
   .aa { font-weight: 700; }
-  .tlay { position: absolute; inset: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 40px; padding: 0 50px; }
-  .txt { width: 470px; flex: none; display: flex; flex-direction: column; gap: 18px; }
+  .tlay { position: absolute; inset: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 34px; padding: 0 40px; }
+  .txt { width: 420px; flex: none; display: flex; flex-direction: column; gap: 18px; }
   .txt .appicon { width: 96px; height: 96px; border-radius: 24px; }
   .txt h1 { margin: 0; font-size: 60px; line-height: 70px; font-weight: 800; letter-spacing: -1px; color: var(--mac-text); }
   .txt p { margin: 0; font-size: 24px; line-height: 36px; color: var(--mac-dim); }
   .pills { display: flex; gap: 10px; flex-wrap: wrap; }
   .pills span { font-size: 17px; padding: 6px 14px; border-radius: 999px; background: color-mix(in srgb, #A50034 10%, white); color: #A50034; font-weight: 600; }
+
+  /* 폴드8 실측 비율: 펼침 940x710 가로 → 2칸을 세로 접힘선에서 반씩 */
+  .two-pane.list-detail { grid-template-columns: 1fr 1fr; }
+  .list-detail .sess { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 10px; row-gap: 3px; padding: 8px 14px; }
+  .list-detail .sess > .top, .list-detail .sess > .snip { grid-column: 1 / -1; }
+  .list-detail .sess > .t { grid-column: 1; grid-row: 2; }
+  .list-detail .sess > .tags, .list-detail .sess > .fold { grid-column: 2; grid-row: 2; align-self: center; }
+
+  /* 폴드8 커버 480x758 (0.63:1) — 넓은 화면이라 목록을 2열 타일로 흘린다 */
+  .cover-list { display: grid !important; grid-template-columns: 1fr 1fr; align-content: start; gap: 10px !important; padding: 0 12px 12px !important; }
+  .cover-list > .head, .cover-list > .group-h { grid-column: 1 / -1; margin: 0 -12px; }
+  .cover-list > .group-h { margin-bottom: 0; }
+  .cover-list .sess { border: 1px solid var(--border); border-radius: 14px; padding: 12px 12px !important; gap: 8px; background: var(--panel); min-height: 104px; }
+  .cover-list .sess .t { font-size: 15px; line-height: 21px; }
+  .list-detail .head.inline { flex-direction: row; align-items: center; }
+  .list-detail .head.inline .search { flex: 1; min-width: 0; }
+  .list-detail .head.inline .chips { flex: none; flex-wrap: nowrap; }
+  .list-detail > .pane:not(.flush) { gap: 6px; padding-top: 10px; }
+  .list-detail .code { margin-top: 3px; }
+  .list-detail .head.inline { gap: 6px; }
+  .list-detail .head.inline .chips { gap: 4px; }
+  .list-detail .head.inline .chip { padding: 0 8px; gap: 3px; font-size: 12.5px; }
+  .list-detail .head.inline .search { padding: 0 10px; gap: 6px; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -63,7 +86,7 @@
       <p>두 맥의 Claude Code 대화를<br>폴드8에서 찾고 읽고 이어갑니다.</p>
       <div class="pills"><span>커버 1칸</span><span>펼침 2칸</span><span>테이블톱</span><span>맥에서 이어가기</span></div>
     </div>
-    <div class="fold-open" style="--zoom:.68">
+    <div class="fold-open" style="--zoom:.64">
         <div class="screen">
           <div class="status-bar" data-time="3:19"></div>
           <div class="app-bar">
@@ -76,8 +99,8 @@
           </div>
           <div class="two-pane list-detail">
             <div class="pane flush">
-              <div class="head">
-                <div class="search"><i data-icon="search"></i>세션 검색… (엔터 = 본문)</div>
+              <div class="head inline">
+                <div class="search"><i data-icon="search"></i><span class="ellipsis">세션 검색… (엔터 = 본문)</span></div>
                 <div class="chips">
                   <span class="chip"><i data-icon="folder"></i>폴더</span>
                   <span class="chip"><i data-icon="calendar"></i>날짜</span>
@@ -147,7 +170,7 @@
           <div class="nav-handle"></div>
         </div>
       </div>
-    <div class="fold-cover" style="--zoom:.68">
+    <div class="fold-cover" style="--zoom:.64">
         <div class="screen">
           <div class="status-bar" data-time="3:19"></div>
           <div class="app-bar">

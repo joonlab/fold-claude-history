@@ -47,6 +47,17 @@
   .aa { font-weight: 700; }
   .layout { position: absolute; top: 120px; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 48px; }
   .code { white-space: pre-wrap; }
+
+  /* 폴드8 실측 비율: 펼침 940x710 가로 → 2칸을 세로 접힘선에서 반씩 */
+  .two-pane.list-detail { grid-template-columns: 1fr 1fr; }
+  .list-detail .sess { display: grid; grid-template-columns: minmax(0,1fr) auto; column-gap: 10px; row-gap: 3px; padding: 8px 14px; }
+  .list-detail .sess > .top, .list-detail .sess > .snip { grid-column: 1 / -1; }
+  .list-detail .sess > .t { grid-column: 1; grid-row: 2; }
+  .list-detail .sess > .tags, .list-detail .sess > .fold { grid-column: 2; grid-row: 2; align-self: center; }
+  /* 넓어진 목록 칸: 날짜·점수를 제목 줄 오른쪽으로 */
+  .list-detail .sess > .t { grid-row: 1; }
+  .list-detail .sess > .top { grid-column: 2; grid-row: 1; }
+  .list-detail .sess > .snip { grid-row: 2; }
 </style>
 </head>
 <body>
@@ -57,7 +68,7 @@
   </div>
   <div class="layout">
     <div>
-      <div class="fold-open" style="--zoom:.74">
+      <div class="fold-open" style="--zoom:.8">
         <div class="screen">
           <div class="status-bar" data-time="9:42"></div>
           <div class="app-bar">
@@ -134,7 +145,7 @@
     </div>
 
     <div>
-      <div class="fold-cover" style="--zoom:.74">
+      <div class="fold-cover" style="--zoom:.8">
         <div class="screen">
           <div class="status-bar" data-time="9:42"></div>
           <div class="app-bar">
