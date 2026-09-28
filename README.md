@@ -175,7 +175,13 @@ cd agent && .venv/bin/pip install pytest && .venv/bin/python -m pytest tests
 3. **맥의 기록 인덱스가 몇 시간씩 멈춰 있었습니다.** 웹 기록 서버는 브라우저에 뷰어가 열려 있을 때만 인덱스를 갱신했습니다. 아무도 뷰어를 안 여는 맥은 3시간 40분 전 목록을 주고 있었습니다. 그래서 에이전트가 목록을 줄 때 인덱스가 오래됐으면 직접 갱신을 요청하게 했습니다.
 4. **`claude -r` 대신 `--resume`.** 이어가기로 띄운 탭을 cmux 대시보드가 세션과 잇지 못했는데, 대시보드는 명령줄의 `--resume`/`--session-id` 만 읽었기 때문입니다. 안드로이드 쪽에서는 관제실 앱을 찾으려고 `<queries>` 에 스킴만 적었다가 가시성이 안 열려서, 호스트까지 적어야 했습니다.
 
-<!-- VIDEO -->
+<!-- VIDEO:START -->
+### 홍보 영상
+
+[![홍보 영상 미리보기 — 누르면 전체 영상(가로 16:9, 69초)이 재생됩니다](docs/images/video-preview.webp)](https://pub-81d14e6ebfb841109968e9c0ee057d1b.r2.dev/android-mac-lab/videos/fold-claude-history/fold-claude-history_16x9.mp4)
+
+▶ [가로 16:9 · 69초](https://pub-81d14e6ebfb841109968e9c0ee057d1b.r2.dev/android-mac-lab/videos/fold-claude-history/fold-claude-history_16x9.mp4) · ▶ [세로 9:16 · 66초](https://pub-81d14e6ebfb841109968e9c0ee057d1b.r2.dev/android-mac-lab/videos/fold-claude-history/fold-claude-history_9x16.mp4) — 영상 속 화면은 설명용 목업이고, 책상 사진은 AI로 만든 배경입니다.
+<!-- VIDEO:END -->
 
 ## 관련 프로젝트
 
