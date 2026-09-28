@@ -1,22 +1,26 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
-<!-- 폴드8 테이블톱 아래 반쪽(실제 2.65:1, 눕혀 있어 합성하면 납작해진다) — 배경 H_close_flex -->
+<!-- 폴드8 테이블톱 아래 반쪽(실제 2.65:1) — 배경 H_close_flex (--split 1@0.69).
+     눕혀 있어 합성하면 세로로 약 0.6배 납작해지므로 .low 를 세로 1.6배로 미리 늘려 그린다(합성 후 글자가 읽히게). -->
 <meta name="shot" content="w=720,h=272,scale=2.5">
 <link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
 <script src="https://mockup-kit.invalid/kit.js"></script>
 <link rel="stylesheet" href="scene.css">
 <style>
-  .low { flex: 1; padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .low { position: absolute; left: 0; top: 0; width: 100%; height: 162px; transform: scaleY(1.6); transform-origin: top left;
+         padding: 10px 22px 8px; display: flex; flex-direction: column; gap: 9px; box-sizing: border-box; }
   .row1 { display: flex; gap: 12px; align-items: center; }
-  .find { flex: 1; display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 18px; border-radius: 14px; background: var(--panel2); font-size: 22px; color: var(--dim); }
+  .find { flex: 1; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 12px; background: var(--panel2); font-size: 23px; font-weight: 600; color: var(--text); opacity: .8; }
   .find i { font-size: 24px; }
-  .row1 .btn { height: 60px; padding: 0 18px; font-size: 21px; }
-  .cards { flex: 1; display: grid; grid-template-columns: 1fr 1fr 60px; gap: 12px; }
-  .sc { border: 1px solid var(--border); border-radius: 16px; background: var(--panel); padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .row1 .btn { height: 44px; padding: 0 18px; font-size: 22px; font-weight: 700; }
+  .cards { flex: 1; display: grid; grid-template-columns: 1fr 1fr 50px; gap: 12px; }
+  .sc { border: 1px solid var(--border); border-radius: 12px; background: var(--panel); padding: 6px 16px; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
   .sc.on { border: 2px solid var(--accent); background: var(--accent-tint); }
-  .sc .t { font-size: 24px; font-weight: 800; line-height: 28px; }
-  .sc .m { font-size: 20px; font-weight: 600; color: var(--dim); }
-  .peek { border-radius: 16px 0 0 16px; background: var(--panel); border: 1px solid var(--border); border-right: 0; }
+  .sc .t { font-size: 25px; font-weight: 800; line-height: 30px; }
+  .sc .m { font-size: 21px; font-weight: 600; color: var(--dim); }
+  .peek { border-radius: 12px 0 0 12px; background: var(--panel); border: 1px solid var(--border); border-right: 0; }
+  .screen { position: relative; }
+  .screen .nav-handle { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); margin: 0; }
 </style>
 </head><body>
 <div class="phone app-cchistory dark"><div class="screen">
