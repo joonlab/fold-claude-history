@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 관제실 앱이 깔려 있나 알아야 «이어가기»·«관제실» 버튼을 숨길 수 있다(Android 11+ 패키지 가시성) -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <!-- 호스트까지 적어야 한다 — 스킴만 적으면 관제실 필터(호스트 tab·resume 필수)와 안 맞아 가시성이 안 열린다(M5 실측) -->
+            <data android:scheme="cmuxremote" android:host="tab" />
+        </intent>
+    </queries>
+
+    <!-- 에이전트는 Tailscale serve 의 HTTPS 주소로만 받는다 → cleartext 허용이 필요 없다(관제실과 같음). -->
+    <application
+        android:label="Claude 기록"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:supportsRtl="true">
+
+        <!-- 폴드: 접힘·펼침 크기 변화를 스스로 감당한다(size compat 으로 얼리지 않게) -->
+        <meta-data android:name="android.supports_size_changes" android:value="true" />
+
+        <!-- configChanges — 자세를 바꿔도 액티비티를 다시 만들지 않는다 → 선택·스크롤·검색어가 그대로 남는다(DESIGN §4) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:windowSoftInputMode="adjustResize"
+            android:configChanges="orientation|screenSize|screenLayout|smallestScreenSize|keyboardHidden|density|uiMode">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- D7: cchistory://session/{sid} — 관제실 대화 머리의 «전체 기록» -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="cchistory" android:host="session" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="shot" content="w=1600,h=1000,scale=2">
+<title>Claude 기록 — 테이블톱</title>
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<style>
+  .mac-col { width: 430px; display: flex; flex-direction: column; gap: 18px; align-self: stretch; justify-content: center; padding-top: 10px; }
+  .search { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: var(--panel2); color: var(--dim); font-size: 14px; }
+  .search i { font-size: 18px; }
+  .live { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px; border-radius: 6px; font-size: 11.5px; line-height: 18px; font-weight: 600;
+          background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .cnt { margin-left: auto; font-size: 11.5px; color: var(--dim); background: var(--panel2); padding: 0 7px; border-radius: 8px; line-height: 18px; }
+  .sess { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .sess.selected { background: var(--accent-tint); }
+  .sess.selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .sess .t { font-size: 14.5px; line-height: 20px; font-weight: 600; }
+  .sess .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tg { font-size: 11.5px; line-height: 18px; padding: 0 7px; border-radius: 6px; background: color-mix(in srgb, #0369A1 12%, transparent); color: light-dark(#0369A1, #7CC4F0); }
+  .fold { font-size: 11.5px; color: var(--accent); display: flex; align-items: center; gap: 4px; }
+  .fold i { font-size: 13px; }
+  .group-h { padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--dim); background: var(--panel); border-bottom: 1px solid var(--border); }
+  .pane.flush { padding: 0 !important; gap: 0 !important; }
+  .head { padding: 10px 14px 8px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
+  .conv-h { display: flex; align-items: center; gap: 8px; }
+  .conv-h .t { font-size: 16px; font-weight: 700; line-height: 22px; }
+  .tool { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 12.5px; color: var(--dim); }
+  .tool i { font-size: 14px; }
+  .code { font-family: var(--mono); font-size: 12px; line-height: 18px; background: var(--panel2); border-radius: 8px; padding: 8px 10px; margin-top: 6px; white-space: pre; }
+  .ai { font-size: 14px; line-height: 21px; }
+  .ai b { font-weight: 700; }
+  .ai ul { margin: 4px 0 0 18px; padding: 0; }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; }
+  .cover-list .sess { padding: 10px 12px; }
+
+  .intro { position: absolute; top: 40px; left: 64px; right: 64px; display: flex; flex-direction: column; gap: 6px; }
+  .snip { font-size: 12.5px; line-height: 18px; color: var(--dim); }
+  .hit { background: color-mix(in srgb, #E8B339 38%, transparent); color: var(--text); border-radius: 3px; padding: 0 2px; }
+  .hit.cur { background: #E8B339; color: #1A1A1A; }
+  .search.on { color: var(--text); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .find { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px; border-radius: 10px; background: var(--panel2); font-size: 13.5px; color: var(--text); }
+  .find i { font-size: 16px; color: var(--dim); }
+  .aa { font-weight: 700; }
+  .layout { position: absolute; top: 130px; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 48px; }
+  .fold-open.land > .screen { width: 940px; height: 832px; }
+  .fold-open.land > .screen::before { top: calc(50% - 12px); bottom: auto; left: 0; right: 0; width: auto; height: 24px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,.03) 42%, rgba(0,0,0,.18) 50%, rgba(255,255,255,.03) 58%, transparent 100%); }
+  .fold-open.land > .screen::after { top: 12px; left: 50%; }
+  .upper { height: 382px; display: flex; flex-direction: column; gap: 8px; padding: 10px 18px; overflow: hidden; }
+  .lower { flex: 1; min-height: 0; border-top: 1px solid var(--border); padding: 18px 18px 8px; display: flex; flex-direction: column; gap: 12px; background: var(--panel); }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr) 40px; gap: 12px; }
+  .scard { border: 1px solid var(--border); border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; background: var(--raised); height: 136px; }
+  .scard.on { border: 2px solid var(--accent); background: var(--accent-tint); }
+  .scard .t { font-size: 14.5px; line-height: 20px; font-weight: 600; }
+  .peek { border: 1px solid var(--border); border-radius: 14px 0 0 14px; border-right: 0; background: var(--raised); }
+  .side { width: 380px; display: flex; flex-direction: column; gap: 14px; }
+  .side .card { background: var(--raised); }
+  .posture { display: grid; grid-template-columns: 26px 1fr auto; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .posture:last-child { border-bottom: 0; }
+  .posture i { font-size: 18px; color: var(--accent); }
+  .posture .meta { text-align: right; }
+</style>
+</head>
+<body>
+<div class="canvas app-cchistory dark">
+  <div class="intro">
+    <div class="canvas-title">반쯤 접어 세우면 테이블톱</div>
+    <div class="canvas-sub">위 화면은 대화를 읽고, 아래 화면은 찾기와 세션 카드 넘기기를 맡습니다. 자세를 바꿔도 고른 세션·검색어·스크롤이 남습니다.</div>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="fold-open land" style="--zoom:.74">
+        <div class="screen">
+          <div class="status-bar" data-time="11:08"></div>
+          <div class="upper">
+            <div class="conv-h"><span class="t grow ellipsis">블로그 빌드가 갑자기 깨진 이유</span><span class="live">홈맥 · 입력 대기</span><span class="meta">257개</span></div>
+            <div class="msg me">어제까지 되던 빌드가 오늘 아침부터 실패해요. 바꾼 건 글 하나뿐입니다.</div>
+            <div class="tool"><i data-icon="chevron-right"></i>도구 3개 · Bash ×2 · Read</div>
+            <div class="ai">새 글의 머리말에 날짜가 <b>따옴표 없이 콜론</b>을 포함해 YAML 파싱이 깨졌습니다. 날짜를 따옴표로 감싸면 됩니다.</div>
+            <div class="code">date: "2026-09-27 08:30"</div>
+            <div class="msg me">됐어요. 다른 글에도 같은 문제가 있나 봐 주세요.</div>
+          </div>
+          <div class="lower">
+            <div class="row gap-8">
+              <div class="find grow"><i data-icon="search"></i><span class="meta">불러온 대화에서 찾기</span></div>
+              <span class="btn btn-sm"><i data-icon="chevron-down"></i>맨 아래</span>
+              <span class="btn btn-sm"><i data-icon="pin"></i></span>
+            </div>
+            <div class="row"><span class="meta grow">거른 목록 · 24 — 옆으로 넘겨 다른 세션</span><span class="chip"><i data-icon="folder"></i>폴더</span><span class="chip"><i data-icon="x"></i>모두</span></div>
+            <div class="cards">
+              <div class="scard on"><div class="top row gap-8 meta"><span class="live">홈맥</span><span>11:05</span><span class="grow"></span><span>257</span></div><div class="t">블로그 빌드가 갑자기 깨진 이유</div></div>
+              <div class="scard"><div class="meta row"><span>09-26 21:40</span><span class="grow"></span><span>63</span></div><div class="t">블로그 글 목록 순서</div></div>
+              <div class="scard"><div class="meta row"><span>09-24 18:02</span><span class="grow"></span><span>31</span></div><div class="t">RSS 피드 날짜 형식 맞추기</div></div>
+              <div class="peek"></div>
+            </div>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">테이블톱 · 힌지가 가로로 누운 반접힘</div>
+    </div>
+    <div class="side">
+      <div class="card">
+        <div class="card-title">자세마다 배치가 바뀝니다</div>
+        <div>
+          <div class="posture"><i data-icon="smartphone"></i><span>커버</span><span class="meta">1칸</span></div>
+          <div class="posture"><i data-icon="monitor"></i><span>펼침 세로</span><span class="meta">목록 + 대화</span></div>
+          <div class="posture"><i data-icon="monitor"></i><span>펼침 가로</span><span class="meta">폴더 + 목록 + 대화</span></div>
+          <div class="posture"><i data-icon="list-checks"></i><span>두 세션 나란히</span><span class="meta">대화 + 대화</span></div>
+          <div class="posture"><i data-icon="laptop"></i><span>테이블톱</span><span class="meta">위 대화 · 아래 조작</span></div>
+          <div class="posture"><i data-icon="file-text"></i><span>책</span><span class="meta">왼쪽 · 오른쪽</span></div>
+        </div>
+      </div>
+      <div class="card tint">
+        <div class="card-row"><span class="ico"><i data-icon="rotate"></i></span><div class="grow"><div class="card-title">반접힘은 힌지 각도로 판정</div><div class="meta">제 폴드8에서는 반쯤 접어도 FoldingFeature 가 FLAT 으로만 왔습니다. 그래서 힌지 각도 센서로 30~150° 를 반접힘으로 보고, 0.5초 흔들림을 걸러 냅니다.</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

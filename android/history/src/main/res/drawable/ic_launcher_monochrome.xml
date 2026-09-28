@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 생성물: 폴드 앱 패밀리 아이콘 생성기 출력(생성기는 이 저장소에 없다) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <group android:pivotX="54" android:pivotY="54" android:scaleX="0.718" android:scaleY="0.718">
+    <path android:pathData="M37.74,37.74 A23,23 0 1 1 33.69,64.80" android:strokeColor="#FFFFFF" android:strokeWidth="5" android:strokeLineCap="round" android:strokeLineJoin="round" />
+    <path android:pathData="M31.73,43.75 L32.79,32.79 L42.69,42.69 Z" android:fillColor="#FFFFFF" android:strokeColor="#FFFFFF" android:strokeWidth="2.4" android:strokeLineJoin="round" />
+    <path android:pathData="M52,50 h13 a4,4 0 0 1 4,4 v7 a4,4 0 0 1 -4,4 h-1 l1,5 l-6,-5 h-7 a4,4 0 0 1 -4,-4 v-7 a4,4 0 0 1 4,-4 z" android:fillColor="#FFFFFF" />
+    <path android:pathData="M43,40 h14 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-8 l-6,5 l1,-5 h-1 a4,4 0 0 1 -4,-4 v-8 a4,4 0 0 1 4,-4 z" android:fillColor="#FFFFFF" />
+    </group>
+</vector>

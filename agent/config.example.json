@@ -1,0 +1,10 @@
+{
+  "_comment": "복사해서 agent/config.json 으로 저장하세요(커밋 안 함). 환경변수가 있으면 환경변수가 이깁니다.",
+  "machine": "home",
+  "send": "off",
+  "peers": {
+    "home":   { "name": "노트북", "url": "https://mac-laptop.your-tailnet.example:8797" },
+    "laptop": { "name": "홈맥",   "url": "https://mac-home.your-tailnet.example:8797" }
+  },
+  "hand_lib": ""
+}

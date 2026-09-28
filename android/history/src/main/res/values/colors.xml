@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- crimson accent(웹 뷰어 accent 토큰) -->
+    <color name="launcher_bg">#A50034</color>
+</resources>

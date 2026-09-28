@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="shot" content="w=1600,h=1000,scale=2">
+<title>Claude 기록 — 검색</title>
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<style>
+  .mac-col { width: 430px; display: flex; flex-direction: column; gap: 18px; align-self: stretch; justify-content: center; padding-top: 10px; }
+  .search { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: var(--panel2); color: var(--dim); font-size: 14px; }
+  .search i { font-size: 18px; }
+  .live { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px; border-radius: 6px; font-size: 11.5px; line-height: 18px; font-weight: 600;
+          background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .cnt { margin-left: auto; font-size: 11.5px; color: var(--dim); background: var(--panel2); padding: 0 7px; border-radius: 8px; line-height: 18px; }
+  .sess { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .sess.selected { background: var(--accent-tint); }
+  .sess.selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .sess .t { font-size: 14.5px; line-height: 20px; font-weight: 600; }
+  .sess .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tg { font-size: 11.5px; line-height: 18px; padding: 0 7px; border-radius: 6px; background: color-mix(in srgb, #0369A1 12%, transparent); color: light-dark(#0369A1, #7CC4F0); }
+  .fold { font-size: 11.5px; color: var(--accent); display: flex; align-items: center; gap: 4px; }
+  .fold i { font-size: 13px; }
+  .group-h { padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--dim); background: var(--panel); border-bottom: 1px solid var(--border); }
+  .pane.flush { padding: 0 !important; gap: 0 !important; }
+  .head { padding: 10px 14px 8px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
+  .conv-h { display: flex; align-items: center; gap: 8px; }
+  .conv-h .t { font-size: 16px; font-weight: 700; line-height: 22px; }
+  .tool { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 12.5px; color: var(--dim); }
+  .tool i { font-size: 14px; }
+  .code { font-family: var(--mono); font-size: 12px; line-height: 18px; background: var(--panel2); border-radius: 8px; padding: 8px 10px; margin-top: 6px; white-space: pre; }
+  .ai { font-size: 14px; line-height: 21px; }
+  .ai b { font-weight: 700; }
+  .ai ul { margin: 4px 0 0 18px; padding: 0; }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; }
+  .cover-list .sess { padding: 10px 12px; }
+
+  .intro { position: absolute; top: 40px; left: 64px; right: 64px; display: flex; flex-direction: column; gap: 6px; }
+  .snip { font-size: 12.5px; line-height: 18px; color: var(--dim); }
+  .hit { background: color-mix(in srgb, #E8B339 38%, transparent); color: var(--text); border-radius: 3px; padding: 0 2px; }
+  .hit.cur { background: #E8B339; color: #1A1A1A; }
+  .search.on { color: var(--text); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .find { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px; border-radius: 10px; background: var(--panel2); font-size: 13.5px; color: var(--text); }
+  .find i { font-size: 16px; color: var(--dim); }
+  .aa { font-weight: 700; }
+  .layout { position: absolute; top: 120px; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 48px; }
+  .code { white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<div class="canvas app-cchistory dark desk-accent">
+  <div class="intro">
+    <div class="canvas-title">본문까지 찾기</div>
+    <div class="canvas-sub">제목·태그는 앱 안에서 바로 걸러지고, 엔터를 누르면 맥의 검색(키워드·의미·하이브리드)으로 대화 본문을 뒤집니다.</div>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="fold-open" style="--zoom:.74">
+        <div class="screen">
+          <div class="status-bar" data-time="9:42"></div>
+          <div class="app-bar">
+            <img class="mark" data-app="cchistory" alt="">
+            <span class="title">Claude 기록</span>
+            <span class="status"><span class="dot ok"></span>노트북에서 읽음 · 인덱스 1분 전</span>
+            <span class="spacer"></span>
+            <span class="theme-btn"><i data-icon="sun"></i></span>
+          </div>
+          <div class="two-pane list-detail">
+            <div class="pane flush">
+              <div class="head">
+                <div class="search on"><i data-icon="search"></i><span class="q">정렬이 안 바뀜</span><span class="grow"></span><i data-icon="x"></i></div>
+                <div class="seg"><span>키워드</span><span>의미</span><span class="on">하이브리드</span></div>
+                <div class="chips">
+                  <span class="chip on"><i data-icon="calendar"></i>최근 30일</span>
+                  <span class="chip"><i data-icon="folder"></i>폴더</span>
+                  <span class="chip"><i data-icon="pin"></i>북마크</span>
+                </div>
+              </div>
+              <div class="group-h">본문 결과 6</div>
+              <div class="sess selected">
+                <div class="top"><span>09-27</span><span class="cnt">0.91</span></div>
+                <div class="t">장보기 앱 — 목록 정렬 버그 추적</div>
+                <div class="snip">…체크해도 <span class="hit">정렬이 안 바뀌는</span> 건 리스트 키가 그대로라서…</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>09-19</span><span class="cnt">0.74</span></div>
+                <div class="t">가계부 CSV 합치기</div>
+                <div class="snip">…날짜 열이 문자열이라 <span class="hit">정렬 순서가</span> 뒤섞였습니다…</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>09-11</span><span class="cnt">0.68</span></div>
+                <div class="t">블로그 글 목록 순서</div>
+                <div class="snip">…최신 글이 위로 <span class="hit">안 바뀌는</span> 이유는 캐시…</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>09-03</span><span class="cnt">0.52</span></div>
+                <div class="t">사진 정리 스크립트 — 날짜별 폴더로</div>
+                <div class="snip">…EXIF 날짜가 없으면 <span class="hit">순서</span>를 파일 시각으로…</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>08-30</span><span class="cnt">0.47</span></div>
+                <div class="t">회의 메모 요약 템플릿 다듬기</div>
+                <div class="snip">…안건 <span class="hit">순서가 바뀌면</span> 요약도 다시…</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>08-22</span><span class="cnt">0.41</span></div>
+                <div class="t">민지 생일 초대장 페이지</div>
+                <div class="snip">…참석자 명단을 이름 <span class="hit">순</span>으로…</div>
+              </div>
+            </div>
+            <div class="pane">
+              <div class="conv-h">
+                <span class="t grow ellipsis">장보기 앱 — 목록 정렬 버그 추적</span>
+                <span class="meta">182개</span>
+              </div>
+              <div class="find"><i data-icon="search"></i><span class="q">정렬</span><span class="grow"></span><span class="meta">2 / 5</span><i data-icon="arrow-up"></i><i data-icon="chevron-down"></i></div>
+              <div class="msg me">체크한 항목이 목록 맨 아래로 안 내려가요.</div>
+              <div class="tool"><i data-icon="chevron-right"></i>도구 4개 · Read ×2 · Grep ×2</div>
+              <div class="ai">원인은 <span class="hit">정렬</span> 키입니다. 체크 상태가 바뀌어도 리스트 키가 그대로라 다시 <span class="hit cur">정렬</span>되지 않습니다.</div>
+              <div class="tool open"><i data-icon="chevron-down"></i>도구 1개 · Grep</div>
+              <div class="code">grep -n "sortedBy" app/src/…/ListScreen.kt
+42:  val shown = items.sortedBy { it.addedAt }</div>
+              <div class="ai">42번 줄이 추가 시각만 봅니다. checked 를 첫 번째 기준으로 넣겠습니다.</div>
+              <div class="grow"></div>
+              <div class="row gap-8"><span class="btn btn-sm"><i data-icon="arrow-up"></i>이전 40개</span><span class="grow"></span><span class="btn btn-sm"><span class="aa">가</span>글자 크기</span></div>
+            </div>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">펼친 화면 · 검색 결과와 대화 안 찾기</div>
+    </div>
+
+    <div>
+      <div class="fold-cover" style="--zoom:.74">
+        <div class="screen">
+          <div class="status-bar" data-time="9:42"></div>
+          <div class="app-bar">
+            <span class="icon-btn"><i data-icon="chevron-left"></i></span>
+            <span class="title ellipsis" style="font-size:17px">장보기 앱 — 목록 정렬…</span>
+          </div>
+          <div class="content">
+            <div class="msg me">체크한 항목이 목록 맨 아래로 안 내려가요.</div>
+            <div class="tool"><i data-icon="chevron-right"></i>도구 4개 · Read ×2 · Grep ×2</div>
+            <div class="ai">원인은 정렬 키입니다. 체크 상태가 바뀌어도 리스트 키가 그대로라 다시 정렬되지 않습니다.</div>
+            <div class="code">items.sortedWith(
+  compareBy({ it.checked },
+            { it.addedAt }))</div>
+            <div class="tool"><i data-icon="chevron-right"></i>도구 2개 · Edit · Bash</div>
+            <div class="msg me">고쳐졌어요.</div>
+            <div class="ai">좋습니다. 테스트를 하나 추가해 두겠습니다.</div>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">커버 화면 · 대화 1칸</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

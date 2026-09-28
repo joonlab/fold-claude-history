@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="shot" content="w=1600,h=1000,scale=2">
+<title>Claude 기록 — 이어가기</title>
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<style>
+  .mac-col { width: 430px; display: flex; flex-direction: column; gap: 18px; align-self: stretch; justify-content: center; padding-top: 10px; }
+  .search { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: var(--panel2); color: var(--dim); font-size: 14px; }
+  .search i { font-size: 18px; }
+  .live { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px; border-radius: 6px; font-size: 11.5px; line-height: 18px; font-weight: 600;
+          background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .cnt { margin-left: auto; font-size: 11.5px; color: var(--dim); background: var(--panel2); padding: 0 7px; border-radius: 8px; line-height: 18px; }
+  .sess { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .sess.selected { background: var(--accent-tint); }
+  .sess.selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .sess .t { font-size: 14.5px; line-height: 20px; font-weight: 600; }
+  .sess .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tg { font-size: 11.5px; line-height: 18px; padding: 0 7px; border-radius: 6px; background: color-mix(in srgb, #0369A1 12%, transparent); color: light-dark(#0369A1, #7CC4F0); }
+  .fold { font-size: 11.5px; color: var(--accent); display: flex; align-items: center; gap: 4px; }
+  .fold i { font-size: 13px; }
+  .group-h { padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--dim); background: var(--panel); border-bottom: 1px solid var(--border); }
+  .pane.flush { padding: 0 !important; gap: 0 !important; }
+  .head { padding: 10px 14px 8px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
+  .conv-h { display: flex; align-items: center; gap: 8px; }
+  .conv-h .t { font-size: 16px; font-weight: 700; line-height: 22px; }
+  .tool { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 12.5px; color: var(--dim); }
+  .tool i { font-size: 14px; }
+  .code { font-family: var(--mono); font-size: 12px; line-height: 18px; background: var(--panel2); border-radius: 8px; padding: 8px 10px; margin-top: 6px; white-space: pre; }
+  .ai { font-size: 14px; line-height: 21px; }
+  .ai b { font-weight: 700; }
+  .ai ul { margin: 4px 0 0 18px; padding: 0; }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; }
+  .cover-list .sess { padding: 10px 12px; }
+
+  .intro { position: absolute; top: 40px; left: 64px; right: 64px; display: flex; flex-direction: column; gap: 6px; }
+  .snip { font-size: 12.5px; line-height: 18px; color: var(--dim); }
+  .hit { background: color-mix(in srgb, #E8B339 38%, transparent); color: var(--text); border-radius: 3px; padding: 0 2px; }
+  .hit.cur { background: #E8B339; color: #1A1A1A; }
+  .search.on { color: var(--text); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .find { display: flex; align-items: center; gap: 10px; height: 38px; padding: 0 12px; border-radius: 10px; background: var(--panel2); font-size: 13.5px; color: var(--text); }
+  .find i { font-size: 16px; color: var(--dim); }
+  .aa { font-weight: 700; }
+  .layout { position: absolute; top: 120px; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 44px; }
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--mac-dim); font-size: 13px; }
+  .flow i { font-size: 28px; color: var(--accent); }
+  .mac-col { width: 560px; display: flex; flex-direction: column; gap: 16px; }
+  .opt { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+  .opt.pick { border: 2px solid var(--accent); background: var(--accent-tint); }
+  .opt.block { opacity: .8; }
+  .opt .ico { font-size: 22px; }
+  .opt .card-title { font-size: 15px; }
+  .share-sheet { gap: 10px; }
+  .ws { display: flex; gap: 8px; padding: 10px 12px; background: #1d1f23; border-bottom: 1px solid #2b2d31; font-size: 12px; color: #9aa3ad; font-family: var(--mono); }
+  .ws span { padding: 2px 8px; border-radius: 6px; }
+  .ws span.on { background: #2c3a31; color: #9BE3B3; }
+  .posture { display: grid; grid-template-columns: 26px 1fr; align-items: center; gap: 10px; padding: 6px 0; font-size: 14px; }
+  .posture i { font-size: 18px; color: var(--accent); }
+  .flow .big { font-size: 34px; line-height: 1; color: var(--accent); display: inline-flex; }
+</style>
+</head>
+<body>
+<div class="canvas app-cchistory">
+  <div class="intro">
+    <div class="canvas-title">폰에서 고른 세션을 맥에서 이어가기</div>
+    <div class="canvas-sub">맥을 고르면 그 맥의 cmux 새 워크스페이스에서 <span class="mono">claude --resume</span> 이 뜹니다. 다른 맥에서 이미 돌고 있으면 막습니다.</div>
+  </div>
+  <div class="layout">
+    <div>
+      <div class="fold-cover" style="--zoom:.8">
+        <div class="screen">
+          <div class="status-bar" data-time="8:05"></div>
+          <div class="app-bar">
+            <span class="icon-btn"><i data-icon="chevron-left"></i></span>
+            <span class="title ellipsis" style="font-size:17px">사진 정리 스크립트</span>
+          </div>
+          <div class="content">
+            <div class="msg me">날짜별 폴더로 옮기되, 원본은 그대로 두세요.</div>
+            <div class="tool"><i data-icon="chevron-right"></i>도구 3개 · Write · Bash ×2</div>
+            <div class="ai">복사본만 만들도록 했습니다. 실행 전 목록을 먼저 보여 줍니다.</div>
+          </div>
+          <div class="scrim"></div>
+          <div class="share-sheet app-cmux">
+            <div class="sheet-handle"></div>
+            <div class="sheet-title">어느 맥에서 이어갈까요?</div>
+            <div class="meta">사진 정리 스크립트 — 날짜별 폴더로 · 64개</div>
+            <div class="opt pick">
+              <span class="ico"><i data-icon="home"></i></span>
+              <div class="grow"><div class="card-title">홈맥</div><div class="meta">이어갈 수 있습니다 · 작업 폴더 있음</div></div>
+              <i data-icon="circle-check" style="color:var(--accent);font-size:22px"></i>
+            </div>
+            <div class="opt block">
+              <span class="ico"><i data-icon="laptop"></i></span>
+              <div class="grow"><div class="card-title">노트북</div><div class="meta" style="color:var(--danger)">이 맥에 작업 폴더가 없습니다</div></div>
+              <i data-icon="lock" style="color:var(--dim);font-size:20px"></i>
+            </div>
+            <div class="toggle-row"><div class="grow"><div class="label-main">권한 묻지 않고 시작</div><div class="caption">--dangerously-skip-permissions</div></div><span class="switch"></span></div>
+            <span class="btn btn-primary btn-block"><i data-icon="play"></i>홈맥에서 이어가기</span>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">커버 화면 · 관제실 앱의 이어가기 시트</div>
+    </div>
+
+    <div class="flow"><span class="big"><i data-icon="arrow-right"></i></span><span>resume-check<br>그다음 resume</span></div>
+
+    <div class="mac-col">
+      <div class="terminal">
+        <div class="terminal-bar"><span class="traffic"><i></i><i></i><i></i></span><span class="t-title">cmux — 홈맥</span></div>
+        <div class="ws"><span>블로그</span><span>가계부</span><span class="on">↩ 사진 정리 스크립트</span></div>
+        <div class="terminal-body"><span class="t-prompt">❯</span> <span class="t-b">claude --resume 3f2a9c1e-7b4d-4e21-9a0c-5d8e6f1b2c34</span>
+
+<span class="t-accent">●</span> <span class="t-b">Claude Code</span>  <span class="t-dim">~/code/photo-sort</span>
+<span class="t-dim">  이전 대화 64개를 불러왔습니다</span>
+
+<span class="t-prompt">&gt;</span> <span class="t-cursor"></span></div>
+      </div>
+      <div class="card">
+        <div class="card-title">세 겹으로 확인합니다</div>
+        <div class="posture"><i data-icon="list-checks"></i><span>폰이 두 맥에 먼저 묻는다 (resume-check)</span></div>
+        <div class="posture"><i data-icon="list-checks"></i><span>고른 맥이 실행 직전에 같은 검사를 다시 한다</span></div>
+        <div class="posture"><i data-icon="list-checks"></i><span>상대 맥 cmux 에 살아 있으면 막는다</span></div>
+      </div>
+      <div class="device-label">맥 · 새 워크스페이스에서 이어짐</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

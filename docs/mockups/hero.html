@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="shot" content="w=1600,h=1000,scale=2">
+<title>Claude 기록 — 구성</title>
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<style>
+  .layout { position: absolute; top: 30px; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 32px; }
+  .mac-col { width: 430px; display: flex; flex-direction: column; gap: 18px; align-self: stretch; justify-content: center; padding-top: 10px; }
+  .search { display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border-radius: 12px; background: var(--panel2); color: var(--dim); font-size: 14px; }
+  .search i { font-size: 18px; }
+  .live { display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px; border-radius: 6px; font-size: 11.5px; line-height: 18px; font-weight: 600;
+          background: color-mix(in srgb, var(--ok) 14%, transparent); color: var(--ok); }
+  .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+  .cnt { margin-left: auto; font-size: 11.5px; color: var(--dim); background: var(--panel2); padding: 0 7px; border-radius: 8px; line-height: 18px; }
+  .sess { padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .sess.selected { background: var(--accent-tint); }
+  .sess.selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+  .sess .t { font-size: 14.5px; line-height: 20px; font-weight: 600; }
+  .sess .top { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tg { font-size: 11.5px; line-height: 18px; padding: 0 7px; border-radius: 6px; background: color-mix(in srgb, #0369A1 12%, transparent); color: light-dark(#0369A1, #7CC4F0); }
+  .fold { font-size: 11.5px; color: var(--accent); display: flex; align-items: center; gap: 4px; }
+  .fold i { font-size: 13px; }
+  .group-h { padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--dim); background: var(--panel); border-bottom: 1px solid var(--border); }
+  .pane.flush { padding: 0 !important; gap: 0 !important; }
+  .head { padding: 10px 14px 8px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--border); }
+  .conv-h { display: flex; align-items: center; gap: 8px; }
+  .conv-h .t { font-size: 16px; font-weight: 700; line-height: 22px; }
+  .tool { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--border); font-size: 12.5px; color: var(--dim); }
+  .tool i { font-size: 14px; }
+  .code { font-family: var(--mono); font-size: 12px; line-height: 18px; background: var(--panel2); border-radius: 8px; padding: 8px 10px; margin-top: 6px; white-space: pre; }
+  .ai { font-size: 14px; line-height: 21px; }
+  .ai b { font-weight: 700; }
+  .ai ul { margin: 4px 0 0 18px; padding: 0; }
+  .btn-sm { height: 32px; padding: 0 12px; font-size: 13px; }
+  .cover-list .sess { padding: 10px 12px; }
+</style>
+</head>
+<body>
+<div class="canvas app-cchistory">
+
+  <div class="mac-menubar">
+    <span class="app-name">cmux</span><span>파일</span><span>편집</span><span>보기</span><span>윈도우</span>
+    <div class="extras">
+      <span class="extra"><i data-icon="wifi"></i></span>
+      <span class="extra"><i data-icon="battery"></i></span>
+      <span class="extra"><i data-icon="search"></i></span>
+      <span class="clock">9월 28일 (일) 오후 3:19</span>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- 펼침: 목록 + 대화 -->
+    <div>
+      <div class="fold-open" style="--zoom:.76">
+        <div class="screen">
+          <div class="status-bar" data-time="3:19"></div>
+          <div class="app-bar">
+            <img class="mark" data-app="cchistory" alt="">
+            <span class="title">Claude 기록</span>
+            <span class="status"><span class="dot ok"></span>홈맥에서 읽음 · 인덱스 방금</span>
+            <span class="spacer"></span>
+            <span class="icon-btn"><i data-icon="refresh"></i></span>
+            <span class="theme-btn"><i data-icon="moon"></i></span>
+          </div>
+          <div class="two-pane list-detail">
+            <div class="pane flush">
+              <div class="head">
+                <div class="search"><i data-icon="search"></i>세션 검색… (엔터 = 본문)</div>
+                <div class="chips">
+                  <span class="chip"><i data-icon="folder"></i>폴더</span>
+                  <span class="chip"><i data-icon="calendar"></i>날짜</span>
+                  <span class="chip"><i data-icon="pin"></i>북마크</span>
+                </div>
+              </div>
+              <div class="group-h">오늘 (12)</div>
+              <div class="sess selected">
+                <div class="top"><span class="live">노트북 · 입력 대기</span><span>15:14</span><span class="cnt">182</span></div>
+                <div class="t">장보기 앱 — 목록 정렬 버그 추적</div>
+                <div class="tags"><span class="tg">디버깅</span><span class="tg">kotlin</span></div>
+              </div>
+              <div class="sess">
+                <div class="top"><span class="live">홈맥 · 뒤에서 진행</span><span>15:02</span><span class="cnt">64</span></div>
+                <div class="t">사진 정리 스크립트 — 날짜별 폴더로</div>
+                <div class="tags"><span class="tg">파이썬</span></div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>13:40</span><span class="cnt">41</span></div>
+                <div class="t">회의 메모 요약 템플릿 다듬기</div>
+                <div class="fold"><i data-icon="folder"></i>개인 도구</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>11:05</span><span class="cnt">257</span></div>
+                <div class="t">블로그 빌드가 갑자기 깨진 이유</div>
+                <div class="tags"><span class="tg">웹</span><span class="tg">디버깅</span></div>
+              </div>
+              <div class="group-h">어제 (9)</div>
+              <div class="sess">
+                <div class="top"><span>22:31</span><span class="cnt">88</span></div>
+                <div class="t">민지 생일 초대장 페이지</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>19:12</span><span class="cnt">23</span></div>
+                <div class="t">가계부 CSV 합치기</div>
+              </div>
+              <div class="sess">
+                <div class="top"><span>16:48</span><span class="cnt">12</span></div>
+                <div class="t">서준 이사 체크리스트 정리</div>
+              </div>
+            </div>
+            <div class="pane">
+              <div class="conv-h">
+                <span class="t grow ellipsis">장보기 앱 — 목록 정렬 버그 추적</span>
+                <span class="live">노트북</span>
+              </div>
+              <div class="row gap-8">
+                <span class="btn btn-sm"><i data-icon="pin"></i>북마크</span>
+                <span class="btn btn-sm"><i data-icon="terminal"></i>관제실</span>
+                <span class="btn btn-sm btn-primary"><i data-icon="play"></i>이어가기</span>
+              </div>
+              <div class="msg me">체크한 항목이 목록 맨 아래로 안 내려가요. 새로고침하면 그제야 내려갑니다.</div>
+              <div class="tool"><i data-icon="chevron-right"></i>도구 4개 · Read ×2 · Grep ×2</div>
+              <div class="ai">원인은 정렬 키입니다. 체크 상태가 바뀌어도 <b>리스트 키가 그대로</b>라 다시 정렬되지 않습니다.
+                <ul><li>정렬을 <b>checked → 추가 시각</b> 순으로</li><li>키에 checked 를 넣어 다시 그리게</li></ul>
+                <div class="code">items.sortedWith(
+  compareBy({ it.checked }, { it.addedAt }))</div>
+              </div>
+              <div class="tool"><i data-icon="chevron-right"></i>도구 2개 · Edit · Bash</div>
+              <div class="msg me">고쳐졌어요. 테스트도 하나 넣어 주세요.</div>
+              <div class="ai">정렬 순서를 검증하는 테스트를 추가합니다. 체크한 항목 둘과 새 항목 하나를 넣고, 마지막 줄이 체크한 항목인지 봅니다.</div>
+              <div class="tool"><i data-icon="chevron-right"></i>도구 1개 · Edit</div>
+              <div class="grow"></div>
+              <div class="row gap-8"><span class="live">따라보는 중 · 4초마다 새로 읽음</span><span class="spacer grow"></span><span class="meta">182개 중 최근 40개</span></div>
+            </div>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">펼친 화면 · 목록과 대화 2칸</div>
+    </div>
+
+    <!-- 커버: 목록 1칸 -->
+    <div>
+      <div class="fold-cover" style="--zoom:.76">
+        <div class="screen">
+          <div class="status-bar" data-time="3:19"></div>
+          <div class="app-bar">
+            <img class="mark" data-app="cchistory" alt="">
+            <span class="title">Claude 기록</span>
+            <span class="spacer"></span>
+            <span class="theme-btn"><i data-icon="moon"></i></span>
+          </div>
+          <div class="content flush cover-list">
+            <div class="head">
+              <div class="search"><i data-icon="search"></i>세션 검색…</div>
+            </div>
+            <div class="group-h">오늘 (12)</div>
+            <div class="sess">
+              <div class="top"><span class="live">노트북</span><span>15:14</span><span class="cnt">182</span></div>
+              <div class="t">장보기 앱 — 목록 정렬 버그 추적</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span class="live">홈맥</span><span>15:02</span><span class="cnt">64</span></div>
+              <div class="t">사진 정리 스크립트 — 날짜별 폴더로</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span>13:40</span><span class="cnt">41</span></div>
+              <div class="t">회의 메모 요약 템플릿 다듬기</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span>11:05</span><span class="cnt">257</span></div>
+              <div class="t">블로그 빌드가 갑자기 깨진 이유</div>
+            </div>
+            <div class="group-h">어제 (9)</div>
+            <div class="sess">
+              <div class="top"><span>22:31</span><span class="cnt">88</span></div>
+              <div class="t">민지 생일 초대장 페이지</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span>19:12</span><span class="cnt">23</span></div>
+              <div class="t">가계부 CSV 합치기</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span>16:48</span><span class="cnt">12</span></div>
+              <div class="t">서준 이사 체크리스트 정리</div>
+            </div>
+            <div class="sess">
+              <div class="top"><span>10:20</span><span class="cnt">95</span></div>
+              <div class="t">주간 회고 초안</div>
+            </div>
+          </div>
+          <div class="nav-handle"></div>
+        </div>
+      </div>
+      <div class="device-label">커버 화면 · 1칸</div>
+    </div>
+
+    <!-- 맥 -->
+    <div class="mac-col">
+      <div class="terminal">
+        <div class="terminal-bar"><span class="traffic"><i></i><i></i><i></i></span><span class="t-title">agent — 노트북</span></div>
+        <div class="terminal-body"><span class="t-prompt">❯</span> <span class="t-b">pm2 logs cc-history-agent</span>
+<span class="t-dim">15:19:02</span> GET /history/index      <span class="t-ok">304</span> <span class="t-dim">19ms</span>
+<span class="t-dim">15:19:04</span> GET /history/sessions/…/messages
+                           <span class="t-ok">200</span> <span class="t-dim">40개</span>
+<span class="t-dim">15:19:05</span> GET /history/live       <span class="t-ok">200</span>
+<span class="t-dim">15:19:08</span> GET /history/search?mode=hybrid
+                           <span class="t-ok">200</span>
+<span class="t-prompt">❯</span> <span class="t-cursor"></span></div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar"><span class="traffic"><i></i><i></i><i></i></span><span class="t-title">cmux — 장보기 앱</span></div>
+        <div class="terminal-body"><span class="t-accent">●</span> <span class="t-b">Claude Code</span>  <span class="t-dim">~/code/shopping-list</span>
+
+<span class="t-prompt">&gt;</span> 고쳐졌어요. 테스트도 하나 넣어 주세요.
+
+<span class="t-ok">⏺</span> 정렬 순서를 검증하는 테스트를 추가합니다.
+  <span class="t-dim">Edit ListSortTest.kt</span>
+
+<span class="t-prompt">&gt;</span> <span class="t-cursor"></span></div>
+      </div>
+      <div class="device-label">맥 · 에이전트와 진행 중인 세션</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# 복사해서 android/agent.properties 로 저장하세요(이 파일 이름은 .gitignore 에 들어 있습니다).
+# 맥마다 에이전트(agent/server.py)를 띄우고, 폰에서 닿는 HTTPS 주소를 적습니다.
+# 저는 각 맥에서 `tailscale serve --https=8797 http://127.0.0.1:7797` 로 tailnet 안에만 내보냅니다.
+# 한 대만 쓰면 home 만 채우고 laptop 은 비워 두면 됩니다. home 쪽을 먼저 읽고, 안 되면 laptop 으로 넘어갑니다.
+
+cchistory.home.label=홈맥
+cchistory.home.url=https://mac-home.your-tailnet.example:8797
+
+cchistory.laptop.label=노트북
+cchistory.laptop.url=https://mac-laptop.your-tailnet.example:8797
