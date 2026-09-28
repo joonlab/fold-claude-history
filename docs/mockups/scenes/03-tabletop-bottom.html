@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 폴드8 테이블톱 아래 반쪽(실제 2.65:1, 눕혀 있어 합성하면 납작해진다) — 배경 H_close_flex -->
+<meta name="shot" content="w=720,h=272,scale=2.5">
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .low { flex: 1; padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 14px; }
+  .row1 { display: flex; gap: 12px; align-items: center; }
+  .find { flex: 1; display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 18px; border-radius: 14px; background: var(--panel2); font-size: 22px; color: var(--dim); }
+  .find i { font-size: 24px; }
+  .row1 .btn { height: 60px; padding: 0 18px; font-size: 21px; }
+  .cards { flex: 1; display: grid; grid-template-columns: 1fr 1fr 60px; gap: 12px; }
+  .sc { border: 1px solid var(--border); border-radius: 16px; background: var(--panel); padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+  .sc.on { border: 2px solid var(--accent); background: var(--accent-tint); }
+  .sc .t { font-size: 24px; font-weight: 800; line-height: 28px; }
+  .sc .m { font-size: 20px; font-weight: 600; color: var(--dim); }
+  .peek { border-radius: 16px 0 0 16px; background: var(--panel); border: 1px solid var(--border); border-right: 0; }
+</style>
+</head><body>
+<div class="phone app-cchistory dark"><div class="screen">
+  <div class="low">
+    <div class="row1">
+      <div class="find"><i data-icon="search"></i>불러온 대화에서 찾기</div>
+      <span class="btn"><i data-icon="chevron-down"></i>맨 아래</span>
+    </div>
+    <div class="cards">
+      <div class="sc on"><div class="t ellipsis">블로그 빌드가 깨진 이유</div><div class="m">홈맥 · 11:05 · 257</div></div>
+      <div class="sc"><div class="t ellipsis">블로그 글 목록 순서</div><div class="m">09-26 · 63</div></div>
+      <div class="peek"></div>
+    </div>
+  </div>
+  <div class="nav-handle"></div>
+</div></div>
+</body></html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 폴드8 펼친 화면(가로 1.35:1) — 배경 A_open_landscape -->
+<meta name="shot" content="w=720,h=532,scale=2.5">
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .status-bar { height: 26px; padding: 0 18px; font-size: 13px; }
+  .app-bar { height: 50px; padding: 0 14px; gap: 10px; }
+  .app-bar .title { font-size: 21px; }
+  .app-bar .status { font-size: 14px; }
+  .body3 { flex: 1; min-height: 0; display: grid; grid-template-columns: 22px 272px 1fr; }
+  .rail { background: var(--panel); border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--dim); font-size: 16px; }
+  .list { border-right: 1px solid var(--border); overflow: hidden; }
+  .list .search { height: 40px; margin: 10px 12px; padding: 0 12px; font-size: 15px; }
+  .group-h { padding: 5px 14px; font-size: 13.5px; }
+  .sess { padding: 10px 14px; gap: 4px; }
+  .sess .top { font-size: 13.5px; }
+  .sess .t { font-size: 17px; line-height: 23px; }
+  .live { font-size: 13px; line-height: 20px; }
+  .cnt { font-size: 13px; line-height: 20px; }
+  .conv { padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .conv-h { display: flex; align-items: center; gap: 8px; }
+  .conv-h .t { font-size: 19px; font-weight: 800; }
+  .btns { display: flex; gap: 8px; }
+  .btns .btn { height: 36px; padding: 0 13px; font-size: 15px; }
+  .msg { font-size: 16px; line-height: 23px; max-width: 88%; padding: 9px 14px; }
+  .tool { padding: 6px 12px; font-size: 14px; }
+  .ai { font-size: 16px; line-height: 24px; }
+  .foot { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--dim); }
+</style>
+</head><body>
+<div class="phone app-cchistory"><div class="screen">
+  <div class="status-bar" data-time="3:19"></div>
+  <div class="app-bar">
+    <img class="mark" data-app="cchistory" alt="">
+    <span class="title">Claude 기록</span>
+    <span class="status"><span class="dot ok"></span>노트북에서 읽음</span>
+    <span class="spacer"></span>
+    <span class="icon-btn"><i data-icon="refresh"></i></span>
+  </div>
+  <div class="body3">
+    <div class="rail"><i data-icon="chevron-right"></i></div>
+    <div class="list">
+      <div class="search"><i data-icon="search"></i>세션 검색…</div>
+      <div class="group-h">오늘 (12)</div>
+      <div class="sess selected">
+        <div class="top"><span class="live">노트북 · 입력 대기</span><span class="cnt">182</span></div>
+        <div class="t">장보기 앱 — 목록 정렬 버그 추적</div>
+      </div>
+      <div class="sess">
+        <div class="top"><span class="live">홈맥 · 진행</span><span class="cnt">64</span></div>
+        <div class="t">사진 정리 스크립트</div>
+      </div>
+      <div class="sess">
+        <div class="top"><span>13:40</span><span class="cnt">41</span></div>
+        <div class="t">회의 메모 요약 템플릿</div>
+      </div>
+      <div class="sess">
+        <div class="top"><span>11:05</span><span class="cnt">257</span></div>
+        <div class="t">블로그 빌드가 깨진 이유</div>
+      </div>
+    </div>
+    <div class="conv">
+      <div class="conv-h"><span class="t grow ellipsis">장보기 앱 — 목록 정렬 버그</span><span class="live">노트북</span></div>
+      <div class="btns">
+        <span class="btn"><i data-icon="pin"></i>북마크</span>
+        <span class="btn"><i data-icon="terminal"></i>관제실</span>
+        <span class="btn btn-primary"><i data-icon="play"></i>이어가기</span>
+      </div>
+      <div class="msg me">체크한 항목이 목록 맨 아래로 안 내려가요.</div>
+      <div class="tool"><i data-icon="chevron-right"></i>도구 4개 · Read ×2 · Grep ×2</div>
+      <div class="ai">원인은 정렬 키입니다. 체크 상태가 바뀌어도 <b>리스트 키가 그대로</b>라 다시 정렬되지 않습니다.</div>
+      <div class="msg me">고쳐졌어요. 테스트도 하나 넣어 주세요.</div>
+      <div class="ai">정렬 순서를 검증하는 테스트를 추가했습니다.</div>
+      <div class="foot"><span class="live">따라보는 중 · 4초마다</span><span class="grow"></span><span>최근 40개</span></div>
+    </div>
+  </div>
+</div></div>
+</body></html>

@@ -1,0 +1,51 @@
+/* 책상 장면(scenes)용 화면 — 합성되면 작아지므로 평소보다 크게 그린다 */
+html, body { width: 100%; height: 100%; overflow: hidden; margin: 0; }
+.grow { flex: 1; min-width: 0; }
+.ellipsis { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 폰: 화면 한 장을 캔버스 가득 */
+.phone { width: 100vw; height: 100vh; }
+.phone .screen { width: 100%; height: 100%; }
+.live { display: inline-flex; align-items: center; gap: 6px; padding: 1px 9px; border-radius: 7px; font-weight: 700; white-space: nowrap;
+        background: color-mix(in srgb, var(--ok) 15%, transparent); color: var(--ok); }
+.live::before { content: ""; width: .5em; height: .5em; border-radius: 50%; background: var(--ok); }
+.cnt { margin-left: auto; color: var(--dim); background: var(--panel2); padding: 0 8px; border-radius: 8px; }
+.sess { border-bottom: 1px solid var(--border); display: flex; flex-direction: column; position: relative; }
+.sess.selected { background: var(--accent-tint); }
+.sess.selected::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent); }
+.sess .t { font-weight: 700; }
+.sess .top { display: flex; align-items: center; gap: 8px; color: var(--dim); }
+.group-h { font-weight: 700; color: var(--dim); background: var(--panel); border-bottom: 1px solid var(--border); }
+.search { display: flex; align-items: center; gap: 8px; border-radius: 12px; background: var(--panel2); color: var(--dim); }
+.tool { display: flex; align-items: center; gap: 6px; border-radius: 10px; border: 1px solid var(--border); color: var(--dim); }
+.ai b { font-weight: 800; }
+.code { font-family: var(--mono); background: var(--panel2); border-radius: 8px; white-space: pre; }
+
+/* 맥: macOS 데스크톱(메뉴바 + 바탕 + 창) */
+.desk { position: relative; width: 100vw; height: 100vh; overflow: hidden;
+  background: linear-gradient(150deg, #2B3A4A 0%, #3E4B5C 45%, #5A5F6E 100%); }
+.desk > .mac-menubar { position: absolute; top: 0; left: 0; right: 0; z-index: 5; height: 34px; font-size: 15px;
+  background: rgba(30,32,38,.72); color: #EDEFF2; border-bottom: 0; }
+.desk > .mac-menubar .clock { font-size: 15px; }
+.desk > .mac-menubar .extra { font-size: 17px; }
+.cmux { position: absolute; display: flex; flex-direction: column; overflow: hidden;
+  background: #111316; color: #D6DAE0; border: 1px solid #2A2E34; border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.35); color-scheme: dark; }
+.cmux .bar { flex: none; height: 38px; display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #181A1E; border-bottom: 1px solid #25282D; position: relative; }
+.cmux .bar .ttl { position: absolute; left: 90px; right: 90px; text-align: center; font-size: 15px; font-weight: 600; color: #8A929C; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cmux .main { flex: 1; min-height: 0; display: flex; }
+.cmux .side { flex: none; background: #15171B; border-right: 1px solid #25282D; padding: 12px 8px; display: flex; flex-direction: column; gap: 4px; font-size: 18px; }
+.cmux .side .h { font-size: 14px; font-weight: 700; color: #7C8591; padding: 4px 8px 6px; }
+.cmux .side .w { padding: 7px 10px; border-radius: 8px; display: flex; align-items: center; gap: 8px; color: #C9CED6; white-space: nowrap; overflow: hidden; }
+.cmux .side .w.on { background: rgba(255,255,255,.09); color: #F2F4F7; font-weight: 700; }
+.cmux .side .w .dt { width: 9px; height: 9px; border-radius: 50%; flex: none; background: #5B6470; }
+.cmux .side .w .dt.q { background: #E6C97E; }
+.cmux .side .w .dt.r { background: var(--accent-d); }
+.cmux .panes { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.cmux .tabs { flex: none; display: flex; gap: 2px; padding: 6px 8px 0; background: #15171B; border-bottom: 1px solid #25282D; font-size: 16px; }
+.cmux .tabs span { padding: 6px 12px; border-radius: 8px 8px 0 0; color: #8A929C; white-space: nowrap; }
+.cmux .tabs span.on { background: #111316; color: #F2F4F7; font-weight: 600; }
+.cmux .term { flex: 1; min-height: 0; padding: 16px 20px; font-family: var(--mono); white-space: pre; overflow: hidden; font-size: 21px; line-height: 33px; }
+.term .d { color: #7C8591; } .term .g { color: #5ED18A; } .term .a { color: var(--accent-d); }
+.term .y { color: #E6C97E; } .term .b { font-weight: 700; color: #F2F4F7; }
+.term .cur { display: inline-block; width: .6em; height: 1.1em; vertical-align: -3px; background: #D6DAE0; }

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 폴드8 커버 화면(세로 0.72:1) — 배경 G_close_cover -->
+<meta name="shot" content="w=300,h=417,scale=4.32">
+<link rel="stylesheet" href="https://mockup-kit.invalid/kit.css">
+<script src="https://mockup-kit.invalid/kit.js"></script>
+<link rel="stylesheet" href="scene.css">
+<style>
+  .status-bar { height: 22px; padding: 0 14px 0 16px; font-size: 11.5px; }
+  .app-bar { height: 38px; padding: 0 8px; gap: 6px; }
+  .app-bar .title { font-size: 16px; }
+  .content { padding: 4px 10px !important; gap: 6px !important; }
+  .msg { font-size: 13px; line-height: 18px; padding: 6px 10px; }
+  .share-sheet { padding: 8px 12px 12px !important; gap: 7px !important; }
+  .sheet-title { font-size: 17px !important; line-height: 22px; }
+  .sub { font-size: 12px; color: var(--dim); line-height: 16px; }
+  .opt { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
+  .opt.pick { border: 2px solid var(--accent); background: var(--accent-tint); }
+  .opt .ico { font-size: 20px; display: inline-flex; }
+  .opt .nm { font-size: 15.5px; font-weight: 800; line-height: 20px; }
+  .opt .s { font-size: 12px; line-height: 16px; color: var(--dim); }
+  .opt .s.bad { color: var(--danger); }
+  .go { height: 40px; font-size: 15px; font-weight: 700; }
+</style>
+</head><body>
+<div class="phone app-cchistory"><div class="screen">
+  <div class="status-bar" data-time="8:05"></div>
+  <div class="app-bar">
+    <span class="icon-btn"><i data-icon="chevron-left"></i></span>
+    <span class="title ellipsis">사진 정리 스크립트</span>
+  </div>
+  <div class="content">
+    <div class="msg me">날짜별 폴더로 옮기되, 원본은 그대로 두세요.</div>
+  </div>
+  <div class="scrim"></div>
+  <div class="share-sheet app-cmux">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">어느 맥에서 이어갈까요?</div>
+    <div class="sub">사진 정리 스크립트 · 64개</div>
+    <div class="opt pick">
+      <span class="ico"><i data-icon="laptop"></i></span>
+      <div class="grow"><div class="nm">노트북</div><div class="s">이어갈 수 있습니다</div></div>
+      <i data-icon="circle-check" style="color:var(--accent);font-size:20px"></i>
+    </div>
+    <div class="opt">
+      <span class="ico" style="color:var(--dim)"><i data-icon="home"></i></span>
+      <div class="grow"><div class="nm">홈맥</div><div class="s bad">작업 폴더가 없습니다</div></div>
+      <i data-icon="lock" style="color:var(--dim);font-size:18px"></i>
+    </div>
+    <span class="btn btn-primary btn-block go"><i data-icon="play"></i>노트북에서 이어가기</span>
+  </div>
+</div></div>
+</body></html>
